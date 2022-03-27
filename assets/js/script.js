@@ -44,24 +44,24 @@ var createButtons = function(answerOptions) {
     buttonContainerEl.id = "buttonOptions";
 
     var createButton1 = document.createElement("button");
-    createButton1.textcontent = questionList[0].option1;
+    createButton1.innerText = questionList[0].option1;
     createButton1.className = "answeroption";
     createButton1.id = "#btn1"
 
     var createButton2 = document.createElement("button");
-    createButton1.textcontent = questionList[0].option2;
-    createButton1.className = "answeroption";
-    createButton1.id = "#btn2"
+    createButton2.innerText = questionList[0].option2;
+    createButton2.className = "answeroption";
+    createButton2.id = "#btn2"
 
     var createButton3 = document.createElement("button");
-    createButton1.textcontent = questionList[0].option3;
-    createButton1.className = "answeroption";
-    createButton1.id = "#btn3"
+    createButton3.innerText = questionList[0].option3;
+    createButton3.className = "answeroption";
+    createButton3.id = "#btn3"
 
     var createButton4 = document.createElement("button");
-    createButton1.textcontent = questionList[0].option4;
-    createButton1.className = "answeroption";
-    createButton1.id = "#btn4"
+    createButton4.innerText = questionList[0].option4;
+    createButton4.className = "answeroption";
+    createButton4.id = "#btn4"
 
     buttonContainerEl.appendChild(createButton1);
     buttonContainerEl.appendChild(createButton2);
@@ -73,7 +73,6 @@ var createButtons = function(answerOptions) {
     var content = document.querySelector("#startbtn");
     content.innerHTML = ""; // clear what's there
     content.appendChild(buttonContainerEl);
-
 }
 
 
@@ -112,9 +111,9 @@ var showQuestions = function (question) {
 
     
     //get the text of question you want to display
-    questionEl.textContent = questionList[0].question;
-    answerEl1.textContent = questionList[0].option1;
-    createButtons(answerOptions);
+     questionEl.textContent = questionList[0].question;
+    // createButton1.textcontent = questionList[0].option2;
+    createButtons();
     
     
 
