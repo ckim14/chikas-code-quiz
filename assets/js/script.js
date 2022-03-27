@@ -147,17 +147,33 @@ var getNameandHighscore = function() {
         
         var playerFormContainer = document.createElement("div");
 
+        //add header for instructions to add name
+        var inputNameInstructions = document.createElement("h2");
+        inputNameInstructions.textContent = "Fill out your name to submit your score";
+        playerFormContainer.appendChild(inputNameInstructions);
+
+        //add field to input name
         var playerFormInput = document.createElement("input");
-            playerFormInput.label = "playerName";
-            playerFormInput.type = "text";
-            playerFormInput.id = "playerName";
-            playerFormContainer.appendChild(playerFormInput);
+        playerFormInput.label = "playerName";
+        playerFormInput.type = "text";
+        playerFormInput.id = "playerName";
+        playerFormContainer.appendChild(playerFormInput);
 
-
+        //add button to submit 
+        var submitButton = document.createElement("button")
+        submitButton.innerText = "Submit My Name and HighScore";
+        submitButton.addEventListener("click", putNameandScore);
+        playerFormContainer.appendChild(submitButton);
+        
     content.appendChild(playerFormContainer);
-    
+
+
+    //save to local storage
 
 }
 
+var putNameandScore = function () {
+
+};
 
 startGameEl.addEventListener("click", startGame)
