@@ -1,11 +1,17 @@
 console.log(window);
 var questionEl = document.querySelector("#question");
 var startGameEl = document.querySelector("#startbtn");
-var answerEl1 = document.querySelector("#btn1")
+var answer1 = document.querySelector("#btn1")
 var answer2 = document.querySelector("#btn2")
 var answer3 = document.querySelector("#btn3")
 var answer4 = document.querySelector("#btn4")
 var timeCountDown = 60
+
+//createButtons = makes buttons to select questions
+//startgame = starts the game
+//countTimer = starts the timer
+
+
 //array of questions
 var questionList = [
 
@@ -75,11 +81,24 @@ var createButtons = function(answerOptions) {
     content.appendChild(buttonContainerEl);
 }
 
+var getAnswers = function() {
+
+    var AnswerEl = event.target;
+
+    if (questionList[0], AnswerEl.matches("#btn4")) {
+            timeCountDown = timeCountDown + 10;
+        }
+
+    // else if (questionList[0], !AnswerEl.matches("#btn4"))
+    //     timeCountDown = timeCountDown - 5
+}
+
 
 var startGame = function() {
     showQuestions ();
     countTimer();
     showTime();
+    getAnswers();
     
     var intervalTrack = setInterval(countTimer, 1000);
 }
@@ -140,3 +159,12 @@ var showQuestions = function (question) {
 
 
 startGameEl.addEventListener("click", startGame)
+
+clickAnswer1 = function() {
+     answer1.addEventListener("click", getAnswers)
+}
+//answer2.addEventListener("click", getAnswers)
+//answer3.addEventListener("click", getAnswers)
+clickAnswer4 = function () {
+    answer4.addEventListener("click", getAnswers)
+}
