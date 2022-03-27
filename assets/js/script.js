@@ -48,16 +48,16 @@ var checkAnswer = function () {
    if(currentAnswer === questionList[currentQuestion].answer) {
        currentQuestion = currentQuestion + 1;
        timeCountDown = timeCountDown + 10;
-       if(currentQuestion === questionList.length) {
-           // We're done!
-           // Get initial, save score, etc.
+       alert("Correct! +10 seconds on the timer!");
+       if(currentQuestion === questionList.length) {         
            clearInterval(intervalTrack);
+           getNameandHighscore();
        } else {
         showCurrentQuestion();
        }
    } else {
        timeCountDown = timeCountDown - 5;
-       alert('Wrong Answer YOU IDIOT!');
+       alert('-5 for Wrong Answer!');
    }
 
    showTime();
@@ -138,5 +138,26 @@ var showCurrentQuestion = function () {
     var question = questionList[currentQuestion];
     showQuestion(question);
 }
+
+var getNameandHighscore = function() {
+           // We're done!
+           // Get initial, save score, etc.
+        var content = document.querySelector("#container");
+        content.innerHTML = ""; // clear what's there
+        
+        var playerFormContainer = document.createElement("div");
+
+        var playerFormInput = document.createElement("input");
+            playerFormInput.label = "playerName";
+            playerFormInput.type = "text";
+            playerFormInput.id = "playerName";
+            playerFormContainer.appendChild(playerFormInput);
+
+
+    content.appendChild(playerFormContainer);
+    
+
+}
+
 
 startGameEl.addEventListener("click", startGame)
