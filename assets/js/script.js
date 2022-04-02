@@ -6,6 +6,7 @@ var answer4 = document.querySelector("#btn4")
 var timeCountDown = 60
 var currentQuestion = 0; // index of questionList array
 var intervalTrack;
+var playerNameandScore = JSON.parse(localStorage.getItem("playerNameandScore")) || [];
 
 //createButtons = makes buttons to select questions
 //startgame = starts the game
@@ -57,7 +58,7 @@ var checkAnswer = function () {
        }
    } else {
        timeCountDown = timeCountDown - 5;
-       alert('-5 for Wrong Answer!');
+       alert('Wrong Answer!-5 on the timer');
    }
 
    showTime();
@@ -159,21 +160,57 @@ var getNameandHighscore = function() {
         playerFormInput.id = "playerName";
         playerFormContainer.appendChild(playerFormInput);
 
-        //add button to submit 
-        var submitButton = document.createElement("button")
-        submitButton.innerText = "Submit My Name and HighScore";
-        submitButton.addEventListener("click", putNameandScore);
+        //add button to submit with the event listener
+        var submitButton = document.createElement("button");
+        submitButton.id = "submitNameScore";
+        submitButton.innerText = "Submit";
+        submitButton.addEventListener("click", submitNameandScore)
         playerFormContainer.appendChild(submitButton);
-        
-    content.appendChild(playerFormContainer);
 
-
-    //save to local storage
-
-}
-
-var putNameandScore = function () {
-
+        content.appendChild(playerFormContainer);
 };
 
+function submitNameandScore() {
+
+    //get the value in the text input box
+    playerName = document.getElementById('playerName').value;
+
+    //get the name and the score for the player
+    var entry = {'name': playerName, 'score': timeCountDown}
+
+    //push the new entry to the playerNameandScore table
+    playerNameandScore.push(entry);  
+    playerNameandScore.sort((a, b) => { a.score > b.score } );
+    localStorage.setItem("playerNameandScore", JSON.stringify(playerNameandScore));
+
+
+    // if (!playerFormInput) {
+    //     alert("You need to fill out your name!");
+    //     return false;
+    //   }
+    
+    // else {
+    // var playerNameandScore = {
+    //     name: playerFormInput,
+    //     score: timeCountDown,
+    // };
+
+    //check if input values are empty strings
+    
+
+    //   createTaskE1(taskDataObj);
+    //   console.log(taskDataObj);
+    //   console.log(taskDataObj.status);
+    }
+            
+    
+    // //get name and high score from page
+    // console.log(timeCountDown); 
+    // console.log(playe)
+    // updatedPlayerScores.push(playerFormInput);  
+
+// };
+
+
 startGameEl.addEventListener("click", startGame)
+
