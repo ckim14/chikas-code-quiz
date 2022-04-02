@@ -180,37 +180,44 @@ function submitNameandScore() {
 
     //push the new entry to the playerNameandScore table
     playerNameandScore.push(entry);  
-    playerNameandScore.sort((a, b) => { a.score > b.score } );
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+    playerNameandScore.sort((a, b) =>  b.score - a.score );
     localStorage.setItem("playerNameandScore", JSON.stringify(playerNameandScore));
 
+    showLeaderBoard();
+};
 
-    // if (!playerFormInput) {
-    //     alert("You need to fill out your name!");
-    //     return false;
-    //   }
-    
-    // else {
-    // var playerNameandScore = {
-    //     name: playerFormInput,
-    //     score: timeCountDown,
-    // };
+function showLeaderBoard() {
+    var content = document.querySelector("#container");
+    content.innerHTML = ""; // clear what's there
 
-    //check if input values are empty strings
-    
+    //create elements for what is on the board
+    var leaderBoardContainer = document.createElement("div");
 
-    //   createTaskE1(taskDataObj);
-    //   console.log(taskDataObj);
-    //   console.log(taskDataObj.status);
+  
+        var orderedList = document.createElement ("ol")
+        
+        for(var i = 0;i < playerNameandScore.length; i++) {
+            var listItem = document.createElement("li");
+            listItem.innerText = playerNameandScore[i].name + ': ' + playerNameandScore[i].score;
+            orderedList.appendChild(listItem)
+        }
+
+        leaderBoardContainer.appendChild(orderedList);
+
+        var heading = document.createElement('h2');
+        heading.innerText = 'High Scores:';
+        content.appendChild(leaderBoardContainer);
+
+        content.appendChild(orderedList);
     }
-            
-    
-    // //get name and high score from page
-    // console.log(timeCountDown); 
-    // console.log(playe)
-    // updatedPlayerScores.push(playerFormInput);  
+        
 
-// };
 
+
+
+
+ 
 
 startGameEl.addEventListener("click", startGame)
 
