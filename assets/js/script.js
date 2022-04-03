@@ -192,12 +192,20 @@ function showLeaderBoard() {
     content.innerHTML = ""; // clear what's there
 
     //create elements for what is on the board
-    var leaderBoardContainer = document.createElement("div");
+    
+    var headerContainer = document.createElement("div");
 
-  
+
+
+    var leaderBoardContainer = document.createElement("div");
+        var heading = document.createElement("h2");
+            heading.innerText = "High Scores";
+            leaderBoardContainer.appendChild(heading);
+            content.appendChild(heading);
+
         var orderedList = document.createElement ("ol")
         
-        for(var i = 0;i < playerNameandScore.length; i++) {
+        for(var i = 0; i < playerNameandScore.length; i++) {
             var listItem = document.createElement("li");
             listItem.innerText = playerNameandScore[i].name + ': ' + playerNameandScore[i].score;
             orderedList.appendChild(listItem)
@@ -205,9 +213,7 @@ function showLeaderBoard() {
 
         leaderBoardContainer.appendChild(orderedList);
 
-        var heading = document.createElement('h2');
-        heading.innerText = 'High Scores:';
-        content.appendChild(leaderBoardContainer);
+
 
         content.appendChild(orderedList);
     }
